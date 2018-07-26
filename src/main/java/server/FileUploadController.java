@@ -60,7 +60,6 @@ public class FileUploadController {
             int words = 0;
             int letters = 0;
             int sentences = 0;
-            int syllables = 0;
             while (scanner.hasNext()) {
                 String currentWord = scanner.next();
 
@@ -76,21 +75,21 @@ public class FileUploadController {
             }
 
             // Get the flesch scale number
-            syllables = letters / 3;
+            double syllables = letters / 4;
             double fleschNum = .39 * (words / sentences) + 11.8 * (syllables / words) - 15.59;
             // Get the reading level based on flesch scale
             String readingLevel = "";
-            if (fleschNum < 30) {
+            if (fleschNum > 12) {
                 readingLevel = "Very Difficult; college";
-            } else if (fleschNum >= 30 && fleschNum <= 50) {
+            } else if (fleschNum >= 10 && fleschNum <= 12) {
                 readingLevel = "Difficult; high school grad / some college";
-            } else if (fleschNum >= 50 && fleschNum <= 60) {
+            } else if (fleschNum >= 8 && fleschNum <= 10) {
                 readingLevel = "Fairly difficult; some high school";
-            } else if (fleschNum >= 60 && fleschNum <= 70) {
+            } else if (fleschNum >= 7 && fleschNum <= 8) {
                 readingLevel = "Standard; 7th or 8th Grade";
-            } else if (fleschNum >= 70 && fleschNum <= 80) {
+            } else if (fleschNum >= 6 && fleschNum <= 7) {
                 readingLevel = "Fairly easy; 6th Grade";
-            } else if (fleschNum >= 80 && fleschNum <= 90) {
+            } else if (fleschNum >= 5 && fleschNum <= 6) {
                 readingLevel = "Easy; 5th Grade";
             } else {
                 readingLevel = "Very easy; 4th Grade";
