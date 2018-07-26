@@ -32,7 +32,7 @@ public class FileSystemStorageService {
         if (file.isEmpty()) {
             throw new IOException("Failed to store empty file " + filename);
         }
-        if (filename.contains("..")) {
+        if (filename.contains("")) {
             // This is a security check
             throw new IOException(
                     "Cannot store file with relative path outside current directory "
