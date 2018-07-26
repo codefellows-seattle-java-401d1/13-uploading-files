@@ -58,6 +58,8 @@ public class FileUploadController {
 
             int words = 0;
             int letters = 0;
+            int sentences = 0;
+            int syllables = 0;
             while (scanner.hasNext()) {
                 String currentWord = scanner.next();
 
@@ -65,12 +67,20 @@ public class FileUploadController {
                     letters++;
                 }
                 words++;
+
+                if (currentWord.endsWith(".") || currentWord.endsWith("?") || currentWord.endsWith("!")) {
+                    sentences++;
+                }
             }
 
             int fleschNum = 0;
 
+
+
             model.addAttribute("words", words);
             model.addAttribute("letters", letters);
+            model.addAttribute("sentences", sentences);
+            model.addAttribute("flesch", fleschNum);
             return "word-count";
         } catch (IOException e) {
 
