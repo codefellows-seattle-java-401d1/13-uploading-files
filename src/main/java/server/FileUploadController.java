@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import server.storage.FileSystemStorageService;
 
 import java.io.IOException;
@@ -49,10 +50,28 @@ public class FileUploadController {
     }
 
     @PostMapping("/")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-            Model model) {
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model, RedirectAttributes redirectAttributes) {
         try {
             storageService.store(file);
+
+            redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
+
+            double readingLevelCalculations = 0;
+            int words = CountingWords.countingWords(file);
+            int sentences = CountingWords.countingSentences(file);
+            int syllables = CountingWords.countingSyllables(file);
+
+            readingLevelCalculations = 0.39*(words/sentences)+11.8*(syllables/words)-15.59;
+
+            model.addAttribute("message", "Your uploaded file, " + file.getOriginalFilename() + ", has a Reading Level of ...");
+            model.addAttribute("files", file);
+            model.addAttribute("words", words);
+            model.addAttribute("sentences", sentences);
+            model.addAttribute("syllables", syllables);
+            model.addAttribute("readingLevelCalculations", readingLevelCalculations);
+            return "word-count";
+
+            /*
             InputStream inputSteam = file.getInputStream();
             Scanner scanner = new Scanner(inputSteam);
 
@@ -62,9 +81,11 @@ public class FileUploadController {
                 words++;
             }
             model.addAttribute("words", words);
+            model.addAttribute("files", file);
             return "word-count";
+            */
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
         return "redirect:/";
     }
