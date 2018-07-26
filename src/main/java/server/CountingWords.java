@@ -23,13 +23,16 @@ public class CountingWords {
     }
 
     public static int countingSentences(@RequestParam("file") MultipartFile file) throws IOException {
-        String regex = "(?!\\s+)\\W";
+//        String regex = "(?!\\s+)\\W";
+        String regex = "[A-Za-z]+\\W";
+        String checkForSentence;
         InputStream inputSteam = file.getInputStream();
         Scanner scanner = new Scanner(inputSteam);
 
         int sentences = 0;
         while (scanner.hasNext()) {
-            if (scanner.next().matches(regex)){
+            checkForSentence = scanner.next();
+            if (checkForSentence.matches(regex)){
             sentences++;
             }
         }

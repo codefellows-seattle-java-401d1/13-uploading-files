@@ -53,7 +53,18 @@ public class FileUploadController {
                                    Model model) {
         try {
             storageService.store(file);
+            double readingLevelCalculations = 0;
+            int words = CountingWords.countingWords(file);
+            int sentences = CountingWords.countingSentences(file);
+            int syllables = CountingWords.countingSyllables(file);
 
+            readingLevelCalculations = 0.39*(words/sentences)+11.8*(syllables/words)-15.59;
+
+            model.addAttribute("files", file);
+            model.addAttribute("readingLevelCalculations", readingLevelCalculations);
+            return "word-count";
+
+            /*
             InputStream inputSteam = file.getInputStream();
             Scanner scanner = new Scanner(inputSteam);
 
@@ -65,6 +76,7 @@ public class FileUploadController {
             model.addAttribute("words", words);
             model.addAttribute("files", file);
             return "word-count";
+            */
         } catch (IOException e) {
             e.printStackTrace();
         }
