@@ -1,1 +1,30 @@
-<p th:text="${words}"></p>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/">
+        File to upload: <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <p th:text="${words}">Word Count</p>
+            <p th:text="${sentences}">Sentence Count</p>
+            <p th:text="${syllables}">Syllable Count</p>
+
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
+

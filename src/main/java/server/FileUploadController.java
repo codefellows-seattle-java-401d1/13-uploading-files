@@ -26,6 +26,7 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
+    //lecture video shows "/upload"
     @GetMapping("/")
     public String listUploadedFiles(Model model) throws IOException {
         model.addAttribute("files", storageService.loadAll().map(
@@ -51,8 +52,17 @@ public class FileUploadController {
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
             Model model) {
+        //lecture video has RedirectAttributes redirectAttributes as a parameter instead of Model model
+
         try {
             storageService.store(file);
+            //lecture video has redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!")
+            CountingWords.countingWords(file, model);
+            CountingWords.countingSentences(file, model);
+            CountingWords.countingSyllables(file, model);
+
+            /*
+            ===== commenting this out to see if I can move it to another function ====
             InputStream inputSteam = file.getInputStream();
             Scanner scanner = new Scanner(inputSteam);
 
@@ -63,9 +73,12 @@ public class FileUploadController {
             }
             model.addAttribute("words", words);
             return "word-count";
+            */
+
         } catch (IOException e) {
 
         }
         return "redirect:/";
+        //lecture video shows "redirect:/upload"
     }
 }
