@@ -1,0 +1,66 @@
+Retrospection about this past week
+- Practice typing. Mistakes can lead to a lot of time troubleshooting broken code. Accuracy is more important that speed. https://www.livechatinc.com/typing-speed-test/#/
+
+Project Week
+- Be sure to read group agreement, including GH flow
+- Look at scheduling
+- Each day has it's own README.md with instructions and guidance on how to get started, building, etc.
+- Thursday is presentation prep
+- Friday presentations will be start at 1:30pm, 301 will start ~2pm
+
+
+For DOM Access/Manipulation: jQuery or vanilla JS
+
+// Array of objects
+[{--}, {--}, {--}, {--}] // You want to put to put the data from these objects in the DOM.
+
+- need a callback function for the forEach
+x.forEach(town => {
+ // put Handlebars here, needs a template
+}
+
+// Don't need to type it out practically ever
+JSON {"key": "value",
+"key2": "true",
+"key3": 36 
+}
+
+Template literals: Pretty much anytime you need to do string concatination
+
+let dog = 'Demi'; // you can use template literals for all strings (ie `Demi`)
+`My favorite dog is ${dog}`
+
+Client
+User: I want to update a book
+- From single book view, make sure it has a button on it. Then click on the button and go into update mode.
+- Event is fired when she clicks the button
+- We need a listener so we can hear the event
+- We need an event handler so we can do something with the event
+- Handler will take her to the edit book form. Data should be populated in the form already.
+- Then she makes edits the form.
+- Then she submits (button) the form.
+- Event fires > listener > handler
+- Handler needs to grab/harvest the data from the form
+- The data from the form needs to go to an AJAX request...
+  $.ajax({url, method, data})} // method will be a PUT
+- Now we go to the server 
+
+Server
+From the AJAX request...
+app.put('route', (req, res) => {
+  SQL = ' ' // SQL query
+  VALUES = []
+  client.query (SQL, values)
+  .then (res.send ('updated') //This client query goes to database and sends a response (response of updated or error)
+  .catch (res.send ('error')
+});
+- Update is now sent to user (client)
+
+Client
+- She will get some sort of notifaction that an update has been made // maybe
+- She ultimately wants to see the updated book
+
+Order to build the parts (assuming view of book is already built)
+1. Update button and form w/submit button
+2. Then build the server code
+3. Then build the stuff around it (from left to right), and be sure to test along the way (server - need proof of life in server - and client side). Building incrementally along the way is the way to go - you can solve one problem at a time.

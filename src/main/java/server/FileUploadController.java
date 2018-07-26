@@ -57,11 +57,17 @@ public class FileUploadController {
             Scanner scanner = new Scanner(inputSteam);
 
             int words = 0;
+            int letters = 0;
             while (scanner.hasNext()) {
-                scanner.next();
+                String text = scanner.next();
                 words++;
+
+                for (int i = 0; i < text.length(); i++) {
+                    letters++;
+                }
             }
             model.addAttribute("words", words);
+            model.addAttribute("letters", letters);
             return "word-count";
         } catch (IOException e) {
 
