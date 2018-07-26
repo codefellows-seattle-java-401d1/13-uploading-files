@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import server.storage.FileSystemStorageService;
+import storage.FileSystemStorageService;
 
 import java.io.IOException;
 import java.io.InputStream;
