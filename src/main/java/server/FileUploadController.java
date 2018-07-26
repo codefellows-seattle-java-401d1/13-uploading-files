@@ -61,6 +61,22 @@ public class FileUploadController {
                 scanner.next();
                 words++;
             }
+            int sentences = 0;
+            while (scanner.hasNext()) {
+                Scanner sc = new Scanner(System.in).useDelimiter("\\n");
+                sc.next();
+                sentences++;
+
+            }
+            // refactor this into its own method just writing here for now to remind me to call it in here.
+            double readability = words;
+            double constRead = 206.835;
+            double constFleshOne = 1.015;
+            double constFleshTwo = 84.6;
+
+
+
+
             model.addAttribute("words", words);
             return "word-count";
         } catch (IOException e) {
