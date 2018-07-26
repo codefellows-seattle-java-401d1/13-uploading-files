@@ -56,12 +56,40 @@ public class FileUploadController {
             InputStream inputSteam = file.getInputStream();
             Scanner scanner = new Scanner(inputSteam);
 
+            int letters = 0;
             int words = 0;
+            int sentences = 0;
+            int syllables = 0;
             while (scanner.hasNext()) {
-                scanner.next();
-                words++;
+                String wordyBoi = scanner.next();
+                letters = 0;
+
+                for (int i = 0; i < wordyBoi.length(); i++){
+                    letters ++;
+                }
+
+                if(letters >= 5){
+                    syllables += letters/2;
+                }
+                if (wordyBoi.endsWith(".") || wordyBoi.endsWith("!") || wordyBoi.endsWith("?")){
+                    sentences ++;
+
+                }
+
+                words ++;
             }
+
+            double flesh1 = 0.39 * words/sentences;
+            double flesh2 = 11.8 * syllables/words;
+
+            double flesch = flesh1 + flesh2 -15.59;
+
+            int fleshNum = 0;
+            model.addAttribute("sentences", sentences);
+            model.addAttribute("syllables", syllables);
             model.addAttribute("words", words);
+            model.addAttribute("flesch", flesch);
+
             return "word-count";
         } catch (IOException e) {
 
