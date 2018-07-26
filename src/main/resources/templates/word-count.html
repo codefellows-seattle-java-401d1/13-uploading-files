@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<div th:if="${message}">
-    <h2 th:text="${message}"/>
-</div>
+<!--<div th:if="${message}">-->
+    <!--<h2 th:text="${message}"/>-->
+<!--</div>-->
 
 <div>
     <form method="POST" enctype="multipart/form-data" action="/">
@@ -18,8 +18,9 @@
     <ul>
         <li th:each="file : ${files}">
             <p th:text="${words}">Word Count</p>
-            <p th:text="${sentences}">Sentence Count</p>
-            <p th:text="${syllables}">Syllable Count</p>
+            <!--<p th:text="${sentences}">Sentence Count</p>-->
+            <!--<p th:text="${syllables}">Syllable Count</p>-->
+            <!--<p th:text="${readingLevelCalculations}">Reading Level Score</p>-->
 
         </li>
     </ul>

@@ -1,6 +1,5 @@
 package server;
 
-import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 
 public class CountingWords {
 
-    public static int countingWords (@RequestParam("file") MultipartFile file, Model model) throws IOException {
+    public static int countingWords(@RequestParam("file") MultipartFile file) throws IOException {
         InputStream inputSteam = file.getInputStream();
         Scanner scanner = new Scanner(inputSteam);
 
@@ -20,11 +19,10 @@ public class CountingWords {
             scanner.next();
             words++;
         }
-        model.addAttribute("words", words);
         return words;
     }
 
-    public static int countingSentences (@RequestParam("file") MultipartFile file, Model model) throws IOException {
+    public static int countingSentences(@RequestParam("file") MultipartFile file) throws IOException {
         String regex = "(?!\\s+)\\W";
         InputStream inputSteam = file.getInputStream();
         Scanner scanner = new Scanner(inputSteam);
@@ -35,18 +33,18 @@ public class CountingWords {
             sentences++;
             }
         }
-        model.addAttribute("sentences", sentences);
         return sentences;
     }
 
-    public static int countingSyllables(@RequestParam("file") MultipartFile file, Model model) throws IOException {
+    public static int countingSyllables(@RequestParam("file") MultipartFile file) throws IOException {
         InputStream inputSteam = file.getInputStream();
         Scanner scanner = new Scanner(inputSteam);
-        String evaluateWord = scanner.next();
+        String evaluateWord;
 
         int roundedDown = 0;
         int syllables = 0;
         while (scanner.hasNext()) {
+            evaluateWord = scanner.next();
             if (evaluateWord.length() <= 5){
             syllables++;
             } else {
@@ -54,7 +52,6 @@ public class CountingWords {
                 syllables += roundedDown;
             }
         }
-            model.addAttribute("syllables", syllables);
             return syllables;
     }
 }
