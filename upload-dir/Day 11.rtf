@@ -1,0 +1,94 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid1\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid3\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid4\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li2880\lin2880 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid5\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li3600\lin3600 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww25400\viewh16000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Day 11 Notes\
+\
+RESTful routing\
+\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	
+\f1 \uc0\u9642 
+\f0 	}Depending on what type of method (HTTP) is used to access a route determines what sort of CRUD operation is used. By doing this, you can reuse routes and do different operations on the same route.\
+{\listtext	
+\f1 \uc0\u9642 
+\f0 	}Adding Spring dependencies\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1\cf0 {\listtext	\uc0\u8259 	}Look for the PDF (slides) from yesterdays to grab dependencies\
+{\listtext	\uc0\u8259 	}Make a package called server for all controllers etc.\
+{\listtext	\uc0\u8259 	}annotate your main class with SpringBoot application\
+{\listtext	\uc0\u8259 	}main method should have \
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	
+\f1 \uc0\u9642 
+\f0 	}Create a models directory\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1\cf0 {\listtext	\uc0\u8259 	}This will have your constructor\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	
+\f1 \uc0\u9642 
+\f0 	}Controllers @Controller & @RequestMapping(\'93/\'93)\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1\cf0 {\listtext	\uc0\u8259 	}Templates in the resources directory need to be in a separate \'93templates\'94 package\
+{\listtext	\uc0\u8259 	}Needs these methods\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Create HTML form\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@RequestMapping(\'93/mountains\'94)\
+{\listtext	\uc0\u8259 	}form action type = \'93/mountains\'94 method=\'93POST\'94\
+{\listtext	\uc0\u8259 	}form input - type = \'93text\'94 name = \'93name\'94\
+{\listtext	\uc0\u8259 	}form input - type = \'93text\'94 name = elevation\
+{\listtext	\uc0\u8259 	}@GetMapping(\'93/new\'94)\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}return the html page\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Create\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@PostMapping\
+\pard\tx3100\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li3600\fi-3600\pardirnatural\partightenfactor0
+\ls1\ilvl4\cf0 {\listtext	\uc0\u8259 	}@RequestParam(\'93name\'94) String name, @RequestParam(\'93elevation\'94) int elevation <\'97\'97\'97 the param matches up with the names on the form\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Read all (getAllMountains) \
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@GetMapping \
+\pard\tx3100\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li3600\fi-3600\pardirnatural\partightenfactor0
+\ls1\ilvl4\cf0 {\listtext	\uc0\u8259 	}@ResponseBody only if returning raw data\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Read one (getOneMountain)\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@GetMapping (\'93/\{id\}\'94)\
+\pard\tx3100\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li3600\fi-3600\pardirnatural\partightenfactor0
+\ls1\ilvl4\cf0 {\listtext	\uc0\u8259 	}@PathVariable(\'93id) int id\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Update HTML form\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@GetMapping(\'93/\{id\}/edit\'94)\
+\pard\tx3100\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li3600\fi-3600\pardirnatural\partightenfactor0
+\ls1\ilvl4\cf0 {\listtext	\uc0\u8259 	}@PathVariable(\'93id\'94) int id, Model model (Used to attach attributes - IE model.addAttribute(\'93name\'94, mountain.name)\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}in the form - use th:value=\'93$\{name\}\'94 (or whatever the name of the name will be) to pre-populate the form with it\'92s current values\
+{\listtext	\uc0\u8259 	}Method in form should be PUT (NVM, forms don\'92t support PUT\'85. Because internet explorer)\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Update\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@PutMapping(\'93/\{id\}\'94)\
+\pard\tx3100\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li3600\fi-3600\pardirnatural\partightenfactor0
+\ls1\ilvl4\cf0 {\listtext	\uc0\u8259 	}@PathVariable(\'93id\'94) int id,\
+{\listtext	\uc0\u8259 	}@RequestParam(\'93name\'94) String name;\
+{\listtext	\uc0\u8259 	}@RequestParam(\'93elevation\'94 int elevation\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}Needs to be parsed with Gson since the functionality to PUT is actually done through JS\
+\pard\tx1660\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2160\fi-2160\pardirnatural\partightenfactor0
+\ls1\ilvl2\cf0 {\listtext	\uc0\u8259 	}Destroy\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}@DeleteMapping(\'93/\{id\}\'94)\
+\pard\tx3100\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li3600\fi-3600\pardirnatural\partightenfactor0
+\ls1\ilvl4\cf0 {\listtext	\uc0\u8259 	}@PathVariable(\'93id\'94) int id\
+\pard\tx2380\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li2880\fi-2880\pardirnatural\partightenfactor0
+\ls1\ilvl3\cf0 {\listtext	\uc0\u8259 	}\
+}

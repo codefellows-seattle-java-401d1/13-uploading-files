@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import storage.FileSystemStorageService;
+import server.storage.FileSystemStorageService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,11 +57,20 @@ public class FileUploadController {
             Scanner scanner = new Scanner(inputSteam);
 
             int words = 0;
+            int letters = 0;
             while (scanner.hasNext()) {
-                scanner.next();
+                String currentWord = scanner.next();
+
+                for (int i = 0; i < currentWord.length(); i++) {
+                    letters++;
+                }
                 words++;
             }
+
+            int fleschNum = 0;
+
             model.addAttribute("words", words);
+            model.addAttribute("letters", letters);
             return "word-count";
         } catch (IOException e) {
 

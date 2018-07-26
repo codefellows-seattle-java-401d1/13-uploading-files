@@ -1,1 +1,17 @@
-<p th:text="${words}"></p>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <h1>Upload Info</h1>
+        <h2>Word Count</h2>
+        <p th:text="${words}"></p>
+        <h2>Letter Count</h2>
+        <p th:text="${letters}"></p>
+        <h2>Reading Level</h2>
+        <p th:text="${flesch}"></p>
+
+        <a href="/">Go Back</a>
+    </body>
+</html>
