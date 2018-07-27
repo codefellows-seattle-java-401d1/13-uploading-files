@@ -11,9 +11,8 @@ import java.util.Scanner;
 
 public class CountingWords {
 
-    public static int countingWords(@RequestParam("file") MultipartFile file) throws IOException {
-        InputStream inputSteam = file.getInputStream();
-        Scanner scanner = new Scanner(inputSteam);
+    public static int countingWords(InputStream inputStream) throws IOException {
+        Scanner scanner = new Scanner(inputStream);
 
         int words = 0;
         while (scanner.hasNext()) {
@@ -23,11 +22,10 @@ public class CountingWords {
         return words;
     }
 
-    public static int countingSentences(@RequestParam("file") MultipartFile file) throws IOException {
+    public static int countingSentences(InputStream inputStream) throws IOException {
         String regex = "[A-Za-z]+\\W";
         String checkForSentence;
-        InputStream inputSteam = file.getInputStream();
-        Scanner scanner = new Scanner(inputSteam);
+        Scanner scanner = new Scanner(inputStream);
 
         int sentences = 0;
         while (scanner.hasNext()) {
@@ -39,17 +37,14 @@ public class CountingWords {
         return sentences;
     }
 
-    public static int countingSyllables(@RequestParam("file") MultipartFile file) throws IOException {
-        InputStream inputSteam = file.getInputStream();
-        Scanner scanner = new Scanner(inputSteam);
+    public static int countingSyllables(InputStream inputStream) throws IOException {
+        Scanner scanner = new Scanner(inputStream);
         String evaluateWord;
 
         int roundedDown = 0;
         int syllables = 0;
         while (scanner.hasNext()) {
             evaluateWord = ""+scanner.next();
-            System.out.println("" + evaluateWord);
-            System.out.println("" + evaluateWord.length());
             if (evaluateWord.length() <= 5){
             syllables++;
             } else {

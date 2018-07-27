@@ -57,11 +57,12 @@ public class FileUploadController {
             redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
 
             double readingLevelCalculations = 0;
-            int words = CountingWords.countingWords(file);
-            int sentences = CountingWords.countingSentences(file);
-            int syllables = CountingWords.countingSyllables(file);
+            int words = CountingWords.countingWords(file.getInputStream());
+            int sentences = CountingWords.countingSentences(file.getInputStream());
+            int syllables = CountingWords.countingSyllables(file.getInputStream());
 
-            readingLevelCalculations = 0.39*(words/sentences)+11.8*(syllables/words)-15.59;
+            //specifically cast division as a double
+            readingLevelCalculations = 0.39*((double)words/sentences)+11.8*((double) syllables/words)-15.59;
 
             model.addAttribute("message", "Your uploaded file, " + file.getOriginalFilename() + ", has a Reading Level of ...");
             model.addAttribute("files", file);
