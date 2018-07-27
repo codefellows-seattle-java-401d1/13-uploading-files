@@ -1,15 +1,8 @@
 package server;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -18,10 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CountingWordsTest {
 
+    public static int words;
+    public static int sentences;
+    public static int syllables;
+
     public static int countingWords(Path file) throws IOException {
         Scanner scanner = new Scanner(file);
 
-        int words = 0;
+        words = 0;
         while (scanner.hasNext()) {
             scanner.next();
             words++;
@@ -34,7 +31,7 @@ class CountingWordsTest {
         String checkForSentence;
         Scanner scanner = new Scanner(file);
 
-        int sentences = 0;
+        sentences = 0;
         while (scanner.hasNext()) {
             checkForSentence = scanner.next();
             if (checkForSentence.matches(regex)){
@@ -49,7 +46,8 @@ class CountingWordsTest {
         String evaluateWord;
 
         int roundedDown = 0;
-        int syllables = 0;
+
+        syllables = 0;
         while (scanner.hasNext()) {
             evaluateWord = "" + scanner.next();
             if (evaluateWord.length() <= 5) {
@@ -62,14 +60,15 @@ class CountingWordsTest {
         return syllables;
     }
 
+
     @Test
     void countingWordsSmallFile() throws IOException {
         Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
 
         int actual = countingWords(file);
-        int exptected = 13;
+        int expected = 13;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -77,9 +76,9 @@ class CountingWordsTest {
         Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
 
         int actual = countingSentences(file);
-        int exptected = 1;
+        int expected = 1;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -87,9 +86,9 @@ class CountingWordsTest {
         Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
 
         int actual = countingSyllables(file);
-        int exptected = 33;
+        int expected = 33;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -97,41 +96,94 @@ class CountingWordsTest {
         Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/sentence_structure_test");
 
         int actual = countingSentences(file);
-        int exptected = 3;
+        int expected = 3;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     void countingWordsLargeFile() throws IOException {
-        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/war-and-peace.txt");
 
         int actual = countingWords(file);
-        int exptected = 13;
+        int expected = 566_310;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     void countingSentencesLargeFile() throws IOException {
-        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/war-and-peace.txt");
 
         int actual = countingSentences(file);
-        int exptected = 1;
+        int expected = 60_449;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     void countingSyllablesLargeFile() throws IOException {
-        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/war-and-peace.txt");
 
         int actual = countingSyllables(file);
-        int exptected = 33;
+        int expected = 1_039_622;
 
-        assertEquals(exptected, actual);
+        assertEquals(expected, actual);
     }
 
+    @Test
+    void readingLevelMiddleSchool() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/Aesops-Fables.txt");
+        words = countingWords(file);
+        sentences = countingSentences(file);
+        syllables = countingSyllables(file);
+
+        float wordsAndSentences = (float) (.39*((float)words/sentences));
+        float syllablesAndWords = (float) (11.8*((float) syllables/words)-15.59);
+        float readingLevelCalculations = wordsAndSentences + syllablesAndWords;
+
+        //I wasn't sure how to get the reading level for this so I just ran it and pulled the number that came back.
+        float actual = readingLevelCalculations;
+        float expected = (float) 8.045696;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void readingLevelElementary() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/bible.txt");
+        words = countingWords(file);
+        sentences = countingSentences(file);
+        syllables = countingSyllables(file);
+
+        float wordsAndSentences = (float) (.39*((float)words/sentences));
+        float syllablesAndWords = (float) (11.8*((float) syllables/words)-15.59);
+        float readingLevelCalculations = wordsAndSentences + syllablesAndWords;
+
+        //I wasn't sure how to get the reading level for this so I just ran it and pulled the number that came back.
+        float actual = readingLevelCalculations;
+        float expected = (float)  5.0846415;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void readingLevelUniversity() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/einstein.txt");
+        words = countingWords(file);
+        sentences = countingSentences(file);
+        syllables = countingSyllables(file);
+
+        float wordsAndSentences = (float) (.39*((float)words/sentences));
+        float syllablesAndWords = (float) (11.8*((float) syllables/words)-15.59);
+        float readingLevelCalculations = wordsAndSentences + syllablesAndWords;
+
+        //I wasn't sure how to get the reading level for this so I just ran it and pulled the number that came back.
+        float actual = readingLevelCalculations;
+        float expected = (float)  13.344372;
+
+        assertEquals(expected, actual);
+    }
 
 
 }
