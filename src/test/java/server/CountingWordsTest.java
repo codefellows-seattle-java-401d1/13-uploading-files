@@ -92,5 +92,46 @@ class CountingWordsTest {
         assertEquals(exptected, actual);
     }
 
+    @Test
+    void sentenceParsingVerification() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/sentence_structure_test");
+
+        int actual = countingSentences(file);
+        int exptected = 3;
+
+        assertEquals(exptected, actual);
+    }
+
+    @Test
+    void countingWordsLargeFile() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
+
+        int actual = countingWords(file);
+        int exptected = 13;
+
+        assertEquals(exptected, actual);
+    }
+
+    @Test
+    void countingSentencesLargeFile() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
+
+        int actual = countingSentences(file);
+        int exptected = 1;
+
+        assertEquals(exptected, actual);
+    }
+
+    @Test
+    void countingSyllablesLargeFile() throws IOException {
+        Path file = Paths.get("/Users/amycohen/codefellows/401/lab-amy/13-uploading-files/upload-dir/textCheck");
+
+        int actual = countingSyllables(file);
+        int exptected = 33;
+
+        assertEquals(exptected, actual);
+    }
+
+
 
 }
