@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <header>
+            <p>Return to <a href="/">Uploaded Files</a> list.</p>
+        </header>
+
+        <div>
+            <form method="POST" enctype="multipart/form-data" action="/">
+                File to upload: <input type="file" name="file" />
+                <input type="submit" value="Upload" />
+            </form>
+        </div>
+
+        <div th:if="${message}">
+            <h3 th:text="${message}"/>
+        </div>
+
+        <div>
+            <ul>
+                <li th:each="file : ${files}">
+                    <p>
+                        <!--<span th:text="${message}"/>-->
+                        <span>Word Count: </span><span th:text="${words}"/> <br>
+                        <span>Sentence Count: </span><span th:text="${sentences}"/> <br>
+                        <span>Syllable Count: </span><span th:text="${syllables}"/> <br>
+                        <span>Reading Level Score: </span><span th:text="${readingLevelCalculations}"/> <br>
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </body>
+</html>
+
