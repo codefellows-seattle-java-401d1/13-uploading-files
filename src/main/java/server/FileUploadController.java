@@ -56,12 +56,52 @@ public class FileUploadController {
             InputStream inputSteam = file.getInputStream();
             Scanner scanner = new Scanner(inputSteam);
 
+            // Get counts for the file
             int words = 0;
+            int letters = 0;
+            int sentences = 0;
             while (scanner.hasNext()) {
-                scanner.next();
+                String currentWord = scanner.next();
+
+                for (int i = 0; i < currentWord.length(); i++) {
+                    letters++;
+                }
+
+                if (currentWord.endsWith(".") || currentWord.endsWith("?") || currentWord.endsWith("!")) {
+                    sentences++;
+                }
+
                 words++;
             }
+
+            // Get the flesch scale number
+            double syllables = letters / 4;
+            double fleschNum = .39 * (words / sentences) + 11.8 * (syllables / words) - 15.59;
+            // Get the reading level based on flesch scale
+            String readingLevel = "";
+            if (fleschNum > 12) {
+                readingLevel = "Very Difficult; college";
+            } else if (fleschNum >= 10 && fleschNum <= 12) {
+                readingLevel = "Difficult; high school grad / some college";
+            } else if (fleschNum >= 8 && fleschNum <= 10) {
+                readingLevel = "Fairly difficult; some high school";
+            } else if (fleschNum >= 7 && fleschNum <= 8) {
+                readingLevel = "Standard; 7th or 8th Grade";
+            } else if (fleschNum >= 6 && fleschNum <= 7) {
+                readingLevel = "Fairly easy; 6th Grade";
+            } else if (fleschNum >= 5 && fleschNum <= 6) {
+                readingLevel = "Easy; 5th Grade";
+            } else {
+                readingLevel = "Very easy; 4th Grade";
+            }
+
             model.addAttribute("words", words);
+            model.addAttribute("letters", letters);
+            model.addAttribute("sentences", sentences);
+            model.addAttribute("syllables", syllables);
+            model.addAttribute("flesch", fleschNum);
+            model.addAttribute("readingLevel", readingLevel);
+
             return "word-count";
         } catch (IOException e) {
 

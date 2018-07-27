@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <h1>Upload Info</h1>
+        <p>Word count:</p>
+        <p th:text="${words}"></p>
+        <p>Letter count:</p>
+        <p th:text="${letters}"></p>
+        <p>Sentence count:</p>
+        <p th:text="${sentences}"></p>
+        <p>Syllable count:</p>
+        <p th:text="${syllables}"></p>
+        <h2>Reading Level</h2>
+        <p th:text="${flesch}"></p>
+        <p th:text="${readingLevel}"></p>
+
+        <a href="/">Go Back</a>
+    </body>
+</html>
