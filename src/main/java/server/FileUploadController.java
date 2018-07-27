@@ -56,12 +56,14 @@ public class FileUploadController {
 
             redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-            double readingLevelCalculations = 0;
-            int words = CountingWords.countingWords(file);
-            int sentences = CountingWords.countingSentences(file);
-            int syllables = CountingWords.countingSyllables(file);
+            int words = CountingWords.countingWords(file.getInputStream());
+            int sentences = CountingWords.countingSentences(file.getInputStream());
+            int syllables = CountingWords.countingSyllables(file.getInputStream());
 
-            readingLevelCalculations = 0.39*(words/sentences)+11.8*(syllables/words)-15.59;
+            //specifically cast int division as a double
+            float wordsAndSentences = (float) (0.39*((float)words/sentences));
+            float syllablesAndWords = (float) (11.8*((float) syllables/words)-15.59);
+            float readingLevelCalculations = wordsAndSentences + syllablesAndWords;
 
             model.addAttribute("message", "Your uploaded file, " + file.getOriginalFilename() + ", has a Reading Level of ...");
             model.addAttribute("files", file);
@@ -71,19 +73,6 @@ public class FileUploadController {
             model.addAttribute("readingLevelCalculations", readingLevelCalculations);
             return "word-count";
 
-            /*
-            InputStream inputSteam = file.getInputStream();
-            Scanner scanner = new Scanner(inputSteam);
-
-            int words = 0;
-            while (scanner.hasNext()) {
-                scanner.next();
-                words++;
-            }
-            model.addAttribute("words", words);
-            model.addAttribute("files", file);
-            return "word-count";
-            */
         } catch (IOException e) {
             e.printStackTrace();
         }
