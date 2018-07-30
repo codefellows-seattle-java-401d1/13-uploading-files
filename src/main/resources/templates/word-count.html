@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Readability Score Results</title>
+        <link rel="stylesheet" href="/css/main.css" />
+    </head>
+
+    <body>
+        <h1>Readability Score Results</h1>
+        <p th:text="'Number of words: ' + ${words}"></p>
+        <p th:text="'Number of letters: ' + ${letters}"></p>
+        <p th:text="'Number of sentences: ' + ${sentences}"></p>
+        <p th:text="'The Flesch–Kincaid score is: ' + ${fleschScore}"></p>
+        <a href="/">Upload another file</a>
+    </body>
+</html>
