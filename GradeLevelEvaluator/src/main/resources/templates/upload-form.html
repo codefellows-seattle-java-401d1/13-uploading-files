@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <title>Upload File for Evaluation</title>
+</head>
+<body>
+
+//all code from lecture and lecture demo repo
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/">
+        File to upload: <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <p>
+                <a th:href="${file}" th:text="${file}" />
+            </p>
+            <p th:if="${file.endsWith('jpg')}">
+                <img th:src="${file}" />
+            </p>
+        </li>
+    </ul>
+</div>
+
+</body>
