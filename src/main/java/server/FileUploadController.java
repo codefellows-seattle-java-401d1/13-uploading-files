@@ -58,16 +58,40 @@ public class FileUploadController {
 
             int words = 0;
             int letters = 0;
+            int sentences = 0;
+
             while (scanner.hasNext()) {
                 String text = scanner.next();
-                words++;
 
+                // Count the number of characters in the file
                 for (int i = 0; i < text.length(); i++) {
                     letters++;
                 }
+
+                // Count the number of sentences in the file
+                if (text.endsWith(".") || text.endsWith("?") || text.endsWith("!")) {
+                    sentences++;
+                }
+
+                // Count syllables
+
+
+                words++;
             }
+
+            // Calculate syllables
+            // Assuming average syllable length is 4 letters
+            double syllables = letters / 4;
+
+            // Calculate Flesch–Kincaid grade level
+            double fleschScore = 0.39 * (words / sentences) + 11.8 * (syllables / words) - 15.59;
+
             model.addAttribute("words", words);
             model.addAttribute("letters", letters);
+            model.addAttribute("sentences", sentences);
+            model.addAttribute("syllables", syllables);
+            model.addAttribute("fleschScore", fleschScore);
+
             return "word-count";
         } catch (IOException e) {
 
