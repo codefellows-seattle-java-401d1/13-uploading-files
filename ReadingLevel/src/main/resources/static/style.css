@@ -1,0 +1,10 @@
+body {
+    background: darkcyan;
+    color: whitesmoke;
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-size 1.5em;
+}
+
+img {
+    max-width: 400px;
+}
