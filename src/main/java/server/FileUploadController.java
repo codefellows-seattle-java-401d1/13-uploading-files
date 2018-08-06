@@ -73,6 +73,13 @@ public class FileUploadController {
 
             double syllables = letters / 3;
             double fleschNum = .39 * (words / sentences) + 11.8 * (syllables / words) - 15.59;
+            System.out.println("*******************");
+            System.out.println("*******************");
+            System.out.println("This is where we do our calculations.");
+            System.out.println(fleschNum);
+            System.out.println("*******************");
+            System.out.println("*******************");
+
             // Get the reading level based on flesch scale
             String readingLevel = "";
 
@@ -98,7 +105,7 @@ public class FileUploadController {
             model.addAttribute("sentences", sentences);
             model.addAttribute("syllables", syllables);
             model.addAttribute("flesch", fleschNum);
-            model.addAttribute("readinglevel", readingLevel);
+            model.addAttribute("readingLevel", readingLevel);
 
             return "word-count";
         } catch (IOException e) {
