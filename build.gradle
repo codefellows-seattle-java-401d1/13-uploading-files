@@ -13,9 +13,12 @@ repositories {
     mavenCentral()
 }
 dependencies {
+    compile("org.springframework.boot:spring-boot-configuration-processor")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
     implementation 'com.google.code.gson:gson:2.8.5'
     testCompile("junit:junit")
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
 }

@@ -43,7 +43,7 @@ public class FileUploadController {
             Resource file = storageService.loadAsResource(filename);
             return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                     "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-        } catch (IOException e) {
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -55,7 +55,7 @@ public class FileUploadController {
             storageService.store(file);
             InputStream inputSteam = file.getInputStream();
             Scanner scanner = new Scanner(inputSteam);
-
+            System.out.println("This is where we get to on line 58!");
             int words = 0;
             int letters = 0;
             int sentences = 0;
