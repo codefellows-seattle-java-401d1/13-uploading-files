@@ -71,7 +71,7 @@ public class FileUploadController {
                words++;
             }
 
-            double syllables = letters / 4;
+            double syllables = letters / 3;
             double fleschNum = .39 * (words / sentences) + 11.8 * (syllables / words) - 15.59;
             // Get the reading level based on flesch scale
             String readingLevel = "";
