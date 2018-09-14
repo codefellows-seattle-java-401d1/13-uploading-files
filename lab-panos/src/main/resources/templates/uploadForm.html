@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/files" method="get">
+    <input name="filename">
+    <input type="submit">
+</form>
+<form action="/" method="post" enctype="multipart/form-data">
+    <input name="file" type="file">
+    <input type="submit">
+</form>
+<option th:each="i : ${files}">
+    <p th:text="${i}"></p>
+</option>
+
+</body>
+</html>
